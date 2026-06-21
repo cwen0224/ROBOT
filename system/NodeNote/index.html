@@ -1,180 +1,205 @@
-<!DOCTYPE html>
-<html lang="zh-Hant">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NodeNote</title>
-  <meta name="description" content="拖曳式節點編輯器，用 expressions 生成並匯出 Live2D MOTION3。" />
-  <link rel="stylesheet" href="css/style.css" />
-</head>
-<body>
-  <div class="app-shell">
-    <header class="topbar">
-      <div class="brand">
-        <div class="brand-mark">N</div>
-        <div>
-          <div class="brand-title">NodeNote</div>
-          <div class="brand-subtitle">拖曳式 Live2D 節點編輯器</div>
-        </div>
-      </div>
-      <div class="toolbar">
-        <label class="pill">
-          匯入資料夾
-          <input id="folderInput" type="file" webkitdirectory multiple hidden />
-        </label>
-        <label class="pill">
-          匯入檔案
-          <input id="fileInput" type="file" multiple hidden accept=".json,.exp3.json,.motion3.json" />
-        </label>
-        <button id="btnReset" class="pill ghost" type="button">新專案</button>
-        <button id="btnExport" class="pill primary" type="button">匯出 MOTION3</button>
-      </div>
-    </header>
-
-    <main class="layout">
-      <aside class="panel sidebar">
-        <div class="panel-head">
-          <h2>表情庫</h2>
-          <p>點一下就能把預設表情變成節點。</p>
-        </div>
-        <label class="search">
-          <span>搜尋</span>
-          <input id="searchInput" type="search" placeholder="輸入表情或參數名稱" />
-        </label>
-        <div class="stats">
-          <div><span>表情</span><strong id="exprCount">0</strong></div>
-          <div><span>參數</span><strong id="paramCount">0</strong></div>
-          <div><span>節點</span><strong id="nodeCount">0</strong></div>
-          <div><span>長度</span><strong id="durationLabel">0.00s</strong></div>
-        </div>
-        <div id="libraryList" class="library"></div>
-      </aside>
-
-      <section class="workspace">
-        <div class="canvas-head">
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="NodeNote is a drag-line node editor for Live2D expression presets and MOTION3 export."
+    />
+    <title>NodeNote</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="brand">
+          <div class="brand-mark">N</div>
           <div>
-            <h2>節點畫布</h2>
-            <p>Expression 節點輸出參數，接到 Mixer，再連到 Export。</p>
-          </div>
-          <div class="canvas-tools">
-            <label>
-              FPS
-              <input id="fpsInput" type="number" min="1" max="120" step="1" value="60" />
-            </label>
-            <label>
-              預覽時間
-              <input id="timeInput" type="range" min="0" max="10" step="0.01" value="0" />
-            </label>
-          </div>
-        </div>
-        <div id="graph" class="graph">
-          <svg id="wires" class="wires" aria-hidden="true"></svg>
-          <div id="nodeLayer" class="node-layer"></div>
-          <div id="ghostWire" class="ghost-wire hidden"></div>
-        </div>
-      </section>
-
-      <aside class="panel inspector">
-        <div class="panel-head">
-          <h2>屬性</h2>
-          <p>選取節點或連線後，在這裡調整。</p>
-        </div>
-        <div id="emptyInspector" class="empty-state">
-          <strong>尚未選取項目</strong>
-          <p>先從表情庫新增節點，然後用滑鼠拉線連接。</p>
-        </div>
-        <div id="nodeInspector" class="inspector-body hidden">
-          <div class="field">
-            <span>類型</span>
-            <input id="nodeType" type="text" disabled />
-          </div>
-          <div class="field">
-            <span>名稱</span>
-            <input id="nodeName" type="text" />
-          </div>
-          <div class="row">
-            <label class="field">
-              <span>開始(s)</span>
-              <input id="nodeStart" type="number" step="0.01" min="0" />
-            </label>
-            <label class="field">
-              <span>持續(s)</span>
-              <input id="nodeDuration" type="number" step="0.01" min="0.01" />
-            </label>
-          </div>
-          <div class="row">
-            <label class="field">
-              <span>權重</span>
-              <input id="nodeStrength" type="number" step="0.05" />
-            </label>
-            <label class="field">
-              <span>啟用</span>
-              <select id="nodeEnabled">
-                <option value="true">是</option>
-                <option value="false">否</option>
-              </select>
-            </label>
-          </div>
-          <div class="row">
-            <label class="field">
-              <span>淡入(s)</span>
-              <input id="nodeFadeIn" type="number" step="0.01" min="0" />
-            </label>
-            <label class="field">
-              <span>淡出(s)</span>
-              <input id="nodeFadeOut" type="number" step="0.01" min="0" />
-            </label>
-          </div>
-          <div id="presetWrap" class="field">
-            <span>表情預設</span>
-            <select id="presetSelect"></select>
-          </div>
-          <div class="row">
-            <button id="addInputBtn" class="pill ghost" type="button">新增輸入孔</button>
-            <button id="dupNodeBtn" class="pill ghost" type="button">複製</button>
-          </div>
-          <div class="row">
-            <button id="deleteNodeBtn" class="pill danger" type="button">刪除節點</button>
-            <button id="focusNodeBtn" class="pill ghost" type="button">置中</button>
+            <div class="brand-title">NodeNote</div>
+            <div class="brand-subtitle">Drag-line editor for Live2D expressions and MOTION3 export</div>
           </div>
         </div>
 
-        <div id="edgeInspector" class="inspector-body hidden">
-          <div class="field">
-            <span>連線</span>
-            <input id="edgeLabel" type="text" value="connection" />
-          </div>
-          <button id="deleteEdgeBtn" class="pill danger" type="button">刪除連線</button>
-        </div>
+        <div class="toolbar">
+          <label class="pill" for="folderInput" title="Import a folder of .exp3.json files">
+            Import Folder
+          </label>
+          <input id="folderInput" class="hidden" type="file" webkitdirectory multiple />
 
-        <div class="preview">
-          <div class="preview-head">
-            <span>輸出預覽</span>
-            <div class="preview-actions">
-              <button id="copyJsonBtn" class="mini-btn" type="button">複製</button>
-              <button id="downloadJsonBtn" class="mini-btn primary" type="button">下載</button>
+          <label class="pill" for="fileInput" title="Import one or more .exp3.json files">
+            Import Files
+          </label>
+          <input id="fileInput" class="hidden" type="file" accept=".json,.exp3.json,application/json" multiple />
+
+          <button id="btnReset" class="pill danger" type="button">New Project</button>
+          <button id="btnExport" class="pill primary" type="button">Export MOTION3</button>
+        </div>
+      </header>
+
+      <main class="layout">
+        <aside class="panel sidebar">
+          <div class="panel-head">
+            <h2>Library</h2>
+            <p>Imported presets appear here as draggable node sources.</p>
+          </div>
+
+          <label class="search" for="searchInput">
+            <span>Search</span>
+            <input id="searchInput" type="search" placeholder="Find by name or parameter" />
+          </label>
+
+          <div class="stats">
+            <div><span>Expressions</span><strong id="exprCount">0</strong></div>
+            <div><span>Parameters</span><strong id="paramCount">0</strong></div>
+            <div><span>Nodes</span><strong id="nodeCount">0</strong></div>
+            <div><span>Duration</span><strong id="durationLabel">0.00s</strong></div>
+          </div>
+
+          <div id="libraryList" class="library" aria-live="polite"></div>
+        </aside>
+
+        <section class="panel workspace">
+          <div class="canvas-head">
+            <div>
+              <h2>Graph</h2>
+              <p>Connect expression nodes into mixer and export nodes, then sample the result over time.</p>
+            </div>
+
+            <div class="canvas-tools">
+              <label class="field" for="fpsInput">
+                <span>FPS</span>
+                <input id="fpsInput" type="number" min="1" max="120" step="1" value="60" />
+              </label>
+              <label class="field" for="timeInput">
+                <span>Preview Time</span>
+                <input id="timeInput" type="range" min="0" max="10" step="0.01" value="0" />
+              </label>
             </div>
           </div>
-          <textarea id="jsonPreview" readonly rows="16"></textarea>
-        </div>
-      </aside>
-    </main>
-  </div>
 
-  <template id="libraryTemplate">
-    <article class="card">
-      <div class="card-top">
-        <div>
-          <strong class="card-title"></strong>
-          <span class="card-meta"></span>
-        </div>
-        <button class="mini-btn add-btn" type="button">新增節點</button>
-      </div>
-      <p class="card-desc"></p>
-      <div class="chips"></div>
-    </article>
-  </template>
+          <div id="graph" class="graph" aria-label="Node graph workspace">
+            <svg id="wires" class="wires" aria-hidden="true"></svg>
+            <div id="nodeLayer" class="node-layer"></div>
+            <svg class="wires wire-ghost-layer" aria-hidden="true">
+              <path id="ghostWire" class="wire wire-ghost hidden"></path>
+            </svg>
+          </div>
+        </section>
 
-  <script src="js/app.js"></script>
-</body>
+        <aside class="panel inspector">
+          <div class="panel-head">
+            <h2>Inspector</h2>
+            <p>Edit the selected node, or inspect the selected edge.</p>
+          </div>
+
+          <div class="inspector-body">
+            <section id="emptyInspector" class="empty-state">
+              <strong>No selection</strong>
+              <p>Click a node or an edge to edit its details.</p>
+            </section>
+
+            <section id="nodeInspector" class="hidden">
+              <div class="field">
+                <span>Type</span>
+                <select id="nodeType" disabled>
+                  <option value="expression">Expression</option>
+                  <option value="mixer">Mixer</option>
+                  <option value="export">Export</option>
+                </select>
+              </div>
+
+              <label class="field" for="nodeName">
+                <span>Name</span>
+                <input id="nodeName" type="text" placeholder="Node name" />
+              </label>
+
+              <div class="row">
+                <label class="field" for="nodeStart">
+                  <span>Start</span>
+                  <input id="nodeStart" type="number" step="0.01" min="0" />
+                </label>
+                <label class="field" for="nodeDuration">
+                  <span>Duration</span>
+                  <input id="nodeDuration" type="number" step="0.01" min="0.01" />
+                </label>
+              </div>
+
+              <div class="row">
+                <label class="field" for="nodeStrength">
+                  <span>Strength</span>
+                  <input id="nodeStrength" type="number" step="0.01" />
+                </label>
+                <label class="field" for="nodeEnabled">
+                  <span>Enabled</span>
+                  <select id="nodeEnabled">
+                    <option value="true">True</option>
+                    <option value="false">False</option>
+                  </select>
+                </label>
+              </div>
+
+              <div class="row">
+                <label class="field" for="nodeFadeIn">
+                  <span>Fade In</span>
+                  <input id="nodeFadeIn" type="number" step="0.01" min="0" />
+                </label>
+                <label class="field" for="nodeFadeOut">
+                  <span>Fade Out</span>
+                  <input id="nodeFadeOut" type="number" step="0.01" min="0" />
+                </label>
+              </div>
+
+              <div id="presetWrap" class="field">
+                <span>Preset</span>
+                <select id="presetSelect"></select>
+              </div>
+
+              <div class="toolbar">
+                <button id="addInputBtn" class="mini-btn" type="button">Add Input</button>
+                <button id="dupNodeBtn" class="mini-btn" type="button">Duplicate</button>
+                <button id="focusNodeBtn" class="mini-btn" type="button">Focus</button>
+                <button id="deleteNodeBtn" class="mini-btn danger" type="button">Delete Node</button>
+              </div>
+            </section>
+
+            <section id="edgeInspector" class="hidden">
+              <div class="field">
+                <span>Edge Label</span>
+                <input id="edgeLabel" type="text" placeholder="connection" />
+              </div>
+              <button id="deleteEdgeBtn" class="pill danger" type="button">Delete Edge</button>
+            </section>
+
+            <section class="preview">
+              <div class="preview-head">
+                <h3>Generated MOTION3</h3>
+                <div class="preview-actions">
+                  <button id="copyJsonBtn" class="mini-btn" type="button">Copy</button>
+                  <button id="downloadJsonBtn" class="mini-btn primary" type="button">Download</button>
+                </div>
+              </div>
+              <textarea id="jsonPreview" spellcheck="false" readonly></textarea>
+            </section>
+          </div>
+        </aside>
+      </main>
+    </div>
+
+    <template id="libraryTemplate">
+      <article class="card">
+        <div class="card-top">
+          <div>
+            <div class="card-title"></div>
+            <div class="card-meta"></div>
+          </div>
+          <button class="mini-btn add-btn" type="button">Add</button>
+        </div>
+        <div class="card-desc"></div>
+        <div class="chips"></div>
+      </article>
+    </template>
+
+    <script src="js/app.js"></script>
+  </body>
 </html>
