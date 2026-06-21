@@ -1,22 +1,28 @@
-# ROBOT 節點式表情編輯器
+# ROBOT Node Editor
 
-這是一個純前端的 Web App，用來把 `expressions` 資料夾裡的 `exp3.json` 讀成節點，拖到時間軸後，系統會在每個時間點把啟用節點的參數值加總，最後輸出成 `MOTION3`。
+這個資料夾現在是主要開發區，使用 LiteGraph.js 做成可拖曳、可拉線的 node editor。
+
+## 主要功能
+
+- 左側會自動載入 `expressions` 資料夾中的預設表情
+- 點一下即可把表情建立成節點
+- 中間畫布可用滑鼠拖曳、連線、重新排列節點
+- 右側可調整節點參數
+- Export 會把連到輸出節點的 expression 依時間取樣後加總，轉成 `MOTION3`
+
+## 借用的開源專案
+
+- [LiteGraph.js](https://github.com/jagenjo/litegraph.js)
+- 它是一個 MIT 授權的 JavaScript node graph/editor，適合拿來做拖線式節點編輯器
 
 ## 使用方式
 
-1. 用瀏覽器直接打開 `index.html`。
-2. 點 `匯入資料夾`，選擇整個 `ROBOT` 資料夾，或直接把 `expressions` / `animations` 內的 JSON 檔拖進來。
-3. 在左邊表情庫點 `新增節點`。
-4. 在中間時間軸拖曳節點，右邊可以調整開始時間、持續時間、權重、淡入淡出與各參數值。
-5. 按 `匯出 MOTION3` 下載新的 `.motion3.json`。
+1. 打開 `index.html`
+2. 等待預設表情清單載入
+3. 將表情節點加入畫布，連到 Mixer 與 Export
+4. 按 `匯出 MOTION3`
 
-## 匯出規則
+## 匯入自訂表情
 
-- 目前匯出策略是「以 fps 取樣，再把同一時間點所有節點的參數加總」。
-- `Blend` 目前以 `Add` 的方式處理。
-- `Model / Opacity` 會輸出成 1.0 的基礎曲線。
-
-## 備註
-
-- 這個版本不依賴任何外部套件。
-- 如果你要，我下一步可以再把它升級成更像真正 node graph 的版本，例如加入連線、群組、參數節點與更精準的 Motion3 曲線壓縮。
+- 可以直接匯入 `.exp3.json`
+- 或把整個 `expressions` 資料夾拖進檔案選擇器

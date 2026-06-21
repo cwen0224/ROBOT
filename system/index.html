@@ -3,16 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ROBOT Motion Node Studio</title>
+  <title>ROBOT Node Editor</title>
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jagenjo/litegraph.js@master/css/litegraph.css" />
 </head>
 <body>
   <div class="app-shell">
     <header class="topbar">
-      <div>
-        <div class="eyebrow">Live2D / Motion3</div>
-        <h1>ROBOT 節點式表情編輯器</h1>
-        <p class="subtitle">匯入 expressions，拖曳節點到時間軸，系統會在每個時間點把參數加總後輸出成 MOTION3。</p>
+      <div class="title-block">
+        <div class="eyebrow">Live2D / LiteGraph</div>
+        <h1>ROBOT 拖曳式 Node Editor</h1>
+        <p class="subtitle">把 expressions 轉成可拉線的節點，接到 Mixer 與 Export 節點後，系統會在每個時間點把參數加總並輸出成 MOTION3。</p>
       </div>
       <div class="topbar-actions">
         <label class="btn">
@@ -28,11 +29,11 @@
     </header>
 
     <main class="layout">
-      <aside class="panel library-panel">
+      <aside class="panel sidebar left">
         <div class="panel-header">
           <div>
             <h2>表情庫</h2>
-            <p>從 `expressions` 讀入的預設節點。</p>
+            <p>點一下就能把預設 expression 變成節點放進畫布。</p>
           </div>
         </div>
         <label class="search">
@@ -40,32 +41,20 @@
           <input id="librarySearch" type="search" placeholder="輸入表情或參數名稱" />
         </label>
         <div class="stat-grid">
-          <div class="stat">
-            <span>表情數</span>
-            <strong id="exprCount">0</strong>
-          </div>
-          <div class="stat">
-            <span>參數數</span>
-            <strong id="paramCount">0</strong>
-          </div>
-          <div class="stat">
-            <span>節點數</span>
-            <strong id="nodeCount">0</strong>
-          </div>
-          <div class="stat">
-            <span>輸出長度</span>
-            <strong id="durationLabel">0.00s</strong>
-          </div>
+          <div class="stat"><span>表情數</span><strong id="exprCount">0</strong></div>
+          <div class="stat"><span>參數數</span><strong id="paramCount">0</strong></div>
+          <div class="stat"><span>節點數</span><strong id="nodeCount">0</strong></div>
+          <div class="stat"><span>時間長度</span><strong id="durationLabel">0.00s</strong></div>
         </div>
         <div id="libraryList" class="library-list"></div>
       </aside>
 
       <section class="workspace">
-        <div class="timeline-panel panel">
-          <div class="panel-header">
+        <div class="graph-panel panel">
+          <div class="panel-header compact">
             <div>
-              <h2>時間軸節點</h2>
-              <p>拖曳節點的標題列來改變開始時間與位置，選取後可在右側調整參數。</p>
+              <h2>節點畫布</h2>
+              <p>Expression 節點輸出參數，接到 Mixer，再連到 Export。</p>
             </div>
             <div class="timeline-tools">
               <label>
@@ -73,30 +62,31 @@
                 <input id="fpsInput" type="number" min="1" max="120" step="1" value="60" />
               </label>
               <label>
-                播放頭
-                <input id="playheadInput" type="range" min="0" max="10" step="0.01" value="0" />
+                預覽時間
+                <input id="sampleTimeInput" type="range" min="0" max="10" step="0.01" value="0" />
               </label>
             </div>
           </div>
-          <div class="ruler" id="ruler"></div>
-          <div id="stage" class="stage">
-            <div id="playhead" class="playhead"></div>
-          </div>
+          <canvas id="graphCanvas" class="graph-canvas"></canvas>
         </div>
       </section>
 
-      <aside class="panel inspector-panel">
+      <aside class="panel sidebar right">
         <div class="panel-header">
           <div>
             <h2>屬性</h2>
-            <p>選取一個節點後可編輯它的時間、權重與參數值。</p>
+            <p>選取節點後可以直接在這裡改參數、加輸入孔、複製或刪除。</p>
           </div>
         </div>
         <div id="inspectorEmpty" class="empty-state">
           <strong>尚未選取節點</strong>
-          <p>先從左側表情庫新增一個節點。</p>
+          <p>先從左側新增一個表情節點，或直接點畫布上的節點。</p>
         </div>
         <div id="inspector" class="inspector hidden">
+          <div class="field">
+            <label>節點類型</label>
+            <input id="nodeType" type="text" disabled />
+          </div>
           <div class="field">
             <label>名稱</label>
             <input id="nodeName" type="text" />
@@ -104,11 +94,11 @@
           <div class="field-row">
             <label class="field">
               <span>開始(s)</span>
-              <input id="nodeStart" type="number" min="0" step="0.01" />
+              <input id="nodeStart" type="number" step="0.01" min="0" />
             </label>
             <label class="field">
               <span>持續(s)</span>
-              <input id="nodeDuration" type="number" min="0.01" step="0.01" />
+              <input id="nodeDuration" type="number" step="0.01" min="0.01" />
             </label>
           </div>
           <div class="field-row">
@@ -117,53 +107,39 @@
               <input id="nodeStrength" type="number" step="0.05" />
             </label>
             <label class="field">
-              <span>淡入(s)</span>
-              <input id="nodeFadeIn" type="number" min="0" step="0.01" />
+              <span>啟用</span>
+              <select id="nodeEnabled">
+                <option value="true">是</option>
+                <option value="false">否</option>
+              </select>
             </label>
           </div>
           <div class="field-row">
             <label class="field">
+              <span>淡入(s)</span>
+              <input id="nodeFadeIn" type="number" step="0.01" min="0" />
+            </label>
+            <label class="field">
               <span>淡出(s)</span>
-              <input id="nodeFadeOut" type="number" min="0" step="0.01" />
-            </label>
-            <label class="field checkbox">
-              <input id="nodeEnabled" type="checkbox" />
-              <span>啟用</span>
+              <input id="nodeFadeOut" type="number" step="0.01" min="0" />
             </label>
           </div>
+          <div id="nodePresetWrap" class="field">
+            <label>表情預設</label>
+            <select id="nodePreset"></select>
+          </div>
           <div class="field-row">
+            <button id="addInputBtn" class="btn secondary" type="button">新增輸入孔</button>
             <button id="duplicateBtn" class="btn secondary" type="button">複製節點</button>
-            <button id="deleteBtn" class="btn danger" type="button">刪除節點</button>
           </div>
-          <div class="param-editor">
-            <div class="param-editor-header">
-              <h3>參數清單</h3>
-              <span id="nodeMeta"></span>
-            </div>
-            <div id="paramList" class="param-list"></div>
-          </div>
-        </div>
-
-        <div class="output-panel">
-          <div class="panel-header compact">
-            <div>
-              <h2>預覽與輸出</h2>
-              <p>播放頭位置的加總結果會顯示在這裡。</p>
-            </div>
-          </div>
-          <div id="playheadSummary" class="summary"></div>
           <div class="field-row">
-            <button id="copyJsonBtn" class="btn secondary" type="button">複製 JSON</button>
-            <button id="downloadJsonBtn" class="btn primary" type="button">下載檔案</button>
+            <button id="deleteBtn" class="btn danger" type="button">刪除節點</button>
+            <button id="focusBtn" class="btn secondary" type="button">置中</button>
           </div>
-          <label class="field">
-            <span>輸出檔名</span>
-            <input id="outputName" type="text" value="generated.motion3.json" />
-          </label>
-          <label class="field">
-            <span>輸出預覽</span>
+          <div class="field">
+            <label>輸出預覽</label>
             <textarea id="exportPreview" rows="12" readonly></textarea>
-          </label>
+          </div>
         </div>
       </aside>
     </main>
@@ -183,19 +159,7 @@
     </article>
   </template>
 
-  <template id="nodeTemplate">
-    <article class="node-card">
-      <div class="node-handle">
-        <strong class="node-title"></strong>
-        <span class="node-time"></span>
-      </div>
-      <div class="node-body">
-        <div class="node-badge-list"></div>
-        <div class="node-mini-stats"></div>
-      </div>
-    </article>
-  </template>
-
+  <script src="https://cdn.jsdelivr.net/gh/jagenjo/litegraph.js@master/build/litegraph.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
