@@ -1,0 +1,151 @@
+{
+    "Type": "Live2D Expression",
+    "IsModelCustomizationExpression": false,
+    "Parameters": [
+        {
+            "Id": "PalmFacingL",
+            "Value": 1.0,
+            "Blend": "Add"
+        },
+        {
+            "Id": "HandLeftFinger_2_Index",
+            "Value": 0.3535999655723572,
+            "Blend": "Add"
+        },
+        {
+            "Id": "HandLeftFinger_3_Middle",
+            "Value": 0.34645697474479678,
+            "Blend": "Add"
+        },
+        {
+            "Id": "HandLeftFinger_1_Thumb",
+            "Value": 0.35002872347831728,
+            "Blend": "Add"
+        },
+        {
+            "Id": "HandLeftPositionZ",
+            "Value": -10.0,
+            "Blend": "Add"
+        },
+        {
+            "Id": "HandLeftPositionX",
+            "Value": -2.3097033500671388,
+            "Blend": "Add"
+        },
+        {
+            "Id": "HandLeftPositionY",
+            "Value": -1.013047218322754,
+            "Blend": "Add"
+        },
+        {
+            "Id": "HandLeftAngleX",
+            "Value": -128.5819091796875,
+            "Blend": "Add"
+        },
+        {
+            "Id": "PalmFacingR",
+            "Value": 1.0,
+            "Blend": "Add"
+        },
+        {
+            "Id": "HandRightFinger_2_Index",
+            "Value": 0.4214635491371155,
+            "Blend": "Add"
+        },
+        {
+            "Id": "HandRightFinger_3_Middle",
+            "Value": 0.4286070764064789,
+            "Blend": "Add"
+        },
+        {
+            "Id": "HandRightFinger_1_Thumb",
+            "Value": 0.41074782609939577,
+            "Blend": "Add"
+        },
+        {
+            "Id": "HandRightPositionZ",
+            "Value": -10.0,
+            "Blend": "Add"
+        },
+        {
+            "Id": "HandRightPositionX",
+            "Value": 2.9468812942504885,
+            "Blend": "Add"
+        },
+        {
+            "Id": "HandRightPositionY",
+            "Value": 0.26193666458129885,
+            "Blend": "Add"
+        },
+        {
+            "Id": "HandRightAngleX",
+            "Value": 167.1565399169922,
+            "Blend": "Add"
+        },
+        {
+            "Id": "FaceSwap",
+            "Value": 0.019999999552965165,
+            "Blend": "Add"
+        },
+        {
+            "Id": "PupilExpandeing",
+            "Value": 0.0,
+            "Blend": "Add"
+        },
+        {
+            "Id": "MouthPartsSwap",
+            "Value": 0.05999999865889549,
+            "Blend": "Add"
+        },
+        {
+            "Id": "ParamCheek",
+            "Value": 1.0,
+            "Blend": "Add"
+        },
+        {
+            "Id": "ParamEyeRSmile",
+            "Value": -1.0,
+            "Blend": "Add"
+        },
+        {
+            "Id": "ParamEyeLSmile",
+            "Value": -1.0,
+            "Blend": "Add"
+        },
+        {
+            "Id": "MouthEmotion",
+            "Value": 1.0,
+            "Blend": "Add"
+        },
+        {
+            "Id": "ParamEyeLOpen",
+            "Value": 0.0,
+            "Blend": "Add"
+        },
+        {
+            "Id": "ParamEyeROpen",
+            "Value": 0.0,
+            "Blend": "Add"
+        },
+        {
+            "Id": "ParamAngleX",
+            "Value": 0.0,
+            "Blend": "Add"
+        },
+        {
+            "Id": "ParamAngleY",
+            "Value": 30.0,
+            "Blend": "Add"
+        },
+        {
+            "Id": "ParamBodyAngleY",
+            "Value": -4.286067485809326,
+            "Blend": "Add"
+        },
+        {
+            "Id": "ParamMouthOpen",
+            "Value": 0.0,
+            "Blend": "Add"
+        }
+    ]
+}

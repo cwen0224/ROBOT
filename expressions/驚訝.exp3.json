@@ -1,0 +1,111 @@
+{
+    "Type": "Live2D Expression",
+    "IsModelCustomizationExpression": false,
+    "Parameters": [
+        {
+            "Id": "HandLeftFinger_2_Index",
+            "Value": 1.0,
+            "Blend": "Add"
+        },
+        {
+            "Id": "HandLeftFinger_3_Middle",
+            "Value": 1.0,
+            "Blend": "Add"
+        },
+        {
+            "Id": "HandLeftFinger_1_Thumb",
+            "Value": 1.0,
+            "Blend": "Add"
+        },
+        {
+            "Id": "HandLeftPositionX",
+            "Value": 0.7845439910888672,
+            "Blend": "Add"
+        },
+        {
+            "Id": "HandLeftPositionY",
+            "Value": 1.214379072189331,
+            "Blend": "Add"
+        },
+        {
+            "Id": "HandLeftAngleX",
+            "Value": -74.57764434814453,
+            "Blend": "Add"
+        },
+        {
+            "Id": "HandLeftAngleY",
+            "Value": 286.7080993652344,
+            "Blend": "Add"
+        },
+        {
+            "Id": "HandRightFinger_2_Index",
+            "Value": 1.0,
+            "Blend": "Add"
+        },
+        {
+            "Id": "HandRightFinger_3_Middle",
+            "Value": 1.0,
+            "Blend": "Add"
+        },
+        {
+            "Id": "HandRightFinger_1_Thumb",
+            "Value": 1.0,
+            "Blend": "Add"
+        },
+        {
+            "Id": "HandRightPositionX",
+            "Value": 0.5727052688598633,
+            "Blend": "Add"
+        },
+        {
+            "Id": "HandRightPositionY",
+            "Value": -0.3567533493041992,
+            "Blend": "Add"
+        },
+        {
+            "Id": "HandRightAngleX",
+            "Value": 46.289581298828128,
+            "Blend": "Add"
+        },
+        {
+            "Id": "HandRightAngleY",
+            "Value": 267.4208984375,
+            "Blend": "Add"
+        },
+        {
+            "Id": "FaceSwap",
+            "Value": 0.009999999776482582,
+            "Blend": "Add"
+        },
+        {
+            "Id": "PupilExpandeing",
+            "Value": 1.0,
+            "Blend": "Add"
+        },
+        {
+            "Id": "MouthPartsSwap",
+            "Value": 0.019999999552965165,
+            "Blend": "Add"
+        },
+        {
+            "Id": "MouthEmotion",
+            "Value": -1.0,
+            "Blend": "Add"
+        },
+        {
+            "Id": "ParamEyeLOpen",
+            "Value": 0.0,
+            "Blend": "Add"
+        },
+        {
+            "Id": "ParamEyeROpen",
+            "Value": 0.0,
+            "Blend": "Add"
+        },
+        {
+            "Id": "SupriseSparkEffect",
+            "Value": 1.3715399503707886,
+            "Blend": "Add"
+        }
+    ]
+}

@@ -1,0 +1,21 @@
+{
+    "Type": "Live2D Expression",
+    "IsModelCustomizationExpression": false,
+    "Parameters": [
+        {
+            "Id": "FaceSwap",
+            "Value": 0.009999999776482582,
+            "Blend": "Add"
+        },
+        {
+            "Id": "PupilExpandeing",
+            "Value": 1.0,
+            "Blend": "Add"
+        },
+        {
+            "Id": "MouthPartsSwap",
+            "Value": 0.05999999865889549,
+            "Blend": "Add"
+        }
+    ]
+}

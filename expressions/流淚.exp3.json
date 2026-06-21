@@ -1,0 +1,51 @@
+{
+    "Type": "Live2D Expression",
+    "IsModelCustomizationExpression": false,
+    "Parameters": [
+        {
+            "Id": "HandLeftPositionX",
+            "Value": 0.0,
+            "Blend": "Add"
+        },
+        {
+            "Id": "HandLeftAngleX",
+            "Value": -150.0,
+            "Blend": "Add"
+        },
+        {
+            "Id": "HandRightAngleX",
+            "Value": 150.0,
+            "Blend": "Add"
+        },
+        {
+            "Id": "TearOut",
+            "Value": 1.0,
+            "Blend": "Add"
+        },
+        {
+            "Id": "ParamEyeRSmile",
+            "Value": -2.0,
+            "Blend": "Add"
+        },
+        {
+            "Id": "ParamEyeLSmile",
+            "Value": -2.0,
+            "Blend": "Add"
+        },
+        {
+            "Id": "MouthEmotion",
+            "Value": -1.0,
+            "Blend": "Add"
+        },
+        {
+            "Id": "ParamAngleY",
+            "Value": -11.999999046325684,
+            "Blend": "Add"
+        },
+        {
+            "Id": "ParamBodyAngleY",
+            "Value": 2.999999523162842,
+            "Blend": "Add"
+        }
+    ]
+}

@@ -1,0 +1,51 @@
+{
+    "Type": "Live2D Expression",
+    "IsModelCustomizationExpression": false,
+    "Parameters": [
+        {
+            "Id": "HandLeftPositionX",
+            "Value": -1.7858495712280274,
+            "Blend": "Add"
+        },
+        {
+            "Id": "HandLeftPositionY",
+            "Value": -1.429105281829834,
+            "Blend": "Add"
+        },
+        {
+            "Id": "HandLeftAngleX",
+            "Value": -99.00799560546875,
+            "Blend": "Add"
+        },
+        {
+            "Id": "HandRightPositionX",
+            "Value": 2.1430253982543947,
+            "Blend": "Add"
+        },
+        {
+            "Id": "HandRightPositionY",
+            "Value": -1.500136375427246,
+            "Blend": "Add"
+        },
+        {
+            "Id": "HandRightAngleX",
+            "Value": 100.29400634765625,
+            "Blend": "Add"
+        },
+        {
+            "Id": "ParamEyeRSmile",
+            "Value": -1.4999840259552003,
+            "Blend": "Add"
+        },
+        {
+            "Id": "ParamEyeLSmile",
+            "Value": -1.5,
+            "Blend": "Add"
+        },
+        {
+            "Id": "MouthEmotion",
+            "Value": -1.0,
+            "Blend": "Add"
+        }
+    ]
+}

@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ROBOT Git Pages 驗證頁面</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0b0f17;
+      --panel: rgba(18, 26, 39, 0.92);
+      --line: rgba(143, 161, 186, 0.18);
+      --text: #e8eef7;
+      --muted: #8fa1ba;
+      --ok: #6ee7c8;
+      --bad: #ff7a92;
+      --warn: #f3d16b;
+      --shadow: 0 18px 48px rgba(0, 0, 0, 0.36);
+    }
+
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      min-height: 100%;
+      background:
+        radial-gradient(circle at top left, rgba(122, 168, 255, 0.17), transparent 30%),
+        radial-gradient(circle at 80% 15%, rgba(110, 231, 200, 0.16), transparent 28%),
+        linear-gradient(160deg, #070b11 0%, #0d1320 45%, #0a0f18 100%);
+      color: var(--text);
+      font-family: "Noto Sans TC", "Segoe UI", "PingFang TC", "Microsoft JhengHei", sans-serif;
+    }
+
+    body {
+      display: grid;
+      place-items: center;
+      padding: 24px;
+    }
+
+    .card {
+      width: min(920px, 100%);
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      padding: 6px 10px;
+      margin-bottom: 12px;
+      border-radius: 999px;
+      background: rgba(110, 231, 200, 0.11);
+      color: var(--ok);
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(28px, 4vw, 44px);
+      line-height: 1.05;
+    }
+
+    p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .subtitle {
+      margin-top: 10px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .stat, .panel {
+      padding: 14px;
+      border-radius: 16px;
+      border: 1px solid rgba(143, 161, 186, 0.16);
+      background: rgba(7, 12, 19, 0.4);
+    }
+
+    .stat span,
+    .label {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .stat strong {
+      display: block;
+      margin-top: 6px;
+      font-size: 18px;
+    }
+
+    .checks {
+      display: grid;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .check {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(143, 161, 186, 0.14);
+      background: rgba(9, 14, 22, 0.72);
+    }
+
+    .check b {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+
+    .status {
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .ok { color: #082015; background: var(--ok); }
+    .bad { color: #2a0b12; background: var(--bad); }
+    .warn { color: #2e2302; background: var(--warn); }
+
+    .links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    a.button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 0 14px;
+      border-radius: 12px;
+      text-decoration: none;
+      color: var(--text);
+      border: 1px solid rgba(143, 161, 186, 0.18);
+      background: rgba(126, 149, 181, 0.12);
+    }
+
+    a.button.primary {
+      color: #07111d;
+      font-weight: 700;
+      background: linear-gradient(135deg, rgba(110, 231, 200, 0.95), rgba(122, 168, 255, 0.92));
+      border-color: transparent;
+    }
+
+    pre {
+      margin: 0;
+      white-space: pre-wrap;
+      word-break: break-word;
+      color: #d9e5f4;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 720px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <div class="eyebrow">Git Pages Verification</div>
+    <h1>ROBOT 驗證頁面</h1>
+    <p class="subtitle">如果你能看到這一頁，代表 Git Pages 已經正常提供靜態檔案。這裡也會自動檢查主要資源是否可載入。</p>
+
+    <section class="grid" aria-label="summary">
+      <div class="stat">
+        <span>目前路徑</span>
+        <strong id="pathLabel">-</strong>
+      </div>
+      <div class="stat">
+        <span>頁面來源</span>
+        <strong id="originLabel">-</strong>
+      </div>
+    </section>
+
+    <section class="checks" aria-label="checks">
+      <div class="check">
+        <div>
+          <b>index.html 可讀</b>
+          <p>確認首頁檔案存在，能從 Git Pages 正常提供。</p>
+        </div>
+        <div id="checkIndex" class="status warn">檢查中</div>
+      </div>
+      <div class="check">
+        <div>
+          <b>app.js 可讀</b>
+          <p>確認主程式可以被同源載入。</p>
+        </div>
+        <div id="checkJs" class="status warn">檢查中</div>
+      </div>
+      <div class="check">
+        <div>
+          <b>styles.css 可讀</b>
+          <p>確認樣式檔案可被正確提供。</p>
+        </div>
+        <div id="checkCss" class="status warn">檢查中</div>
+      </div>
+      <div class="check">
+        <div>
+          <b>本頁載入成功</b>
+          <p>確認驗證頁本身有正常渲染。</p>
+        </div>
+        <div id="checkSelf" class="status warn">檢查中</div>
+      </div>
+    </section>
+
+    <section class="panel" style="margin-top:18px;">
+      <span class="label">診斷輸出</span>
+      <pre id="log">正在檢查資源...</pre>
+    </section>
+
+    <div class="links">
+      <a class="button primary" href="index.html">回主頁</a>
+      <a class="button" href="app.js">開啟 app.js</a>
+      <a class="button" href="styles.css">開啟 styles.css</a>
+    </div>
+  </main>
+
+  <script>
+    const pathLabel = document.getElementById("pathLabel");
+    const originLabel = document.getElementById("originLabel");
+    const log = document.getElementById("log");
+
+    const checks = {
+      index: document.getElementById("checkIndex"),
+      js: document.getElementById("checkJs"),
+      css: document.getElementById("checkCss"),
+      self: document.getElementById("checkSelf"),
+    };
+
+    function setStatus(el, ok, message) {
+      el.className = "status " + (ok ? "ok" : "bad");
+      el.textContent = message;
+    }
+
+    async function probe(url) {
+      const response = await fetch(url, { cache: "no-store" });
+      if (!response.ok) {
+        throw new Error(`${url} -> ${response.status}`);
+      }
+      return true;
+    }
+
+    async function runChecks() {
+      pathLabel.textContent = location.pathname || "/";
+      originLabel.textContent = location.origin || "file://";
+
+      const results = [];
+
+      for (const [name, url, el, label] of [
+        ["index", "index.html", checks.index, "index.html 已就緒"],
+        ["js", "app.js", checks.js, "app.js 已就緒"],
+        ["css", "styles.css", checks.css, "styles.css 已就緒"],
+      ]) {
+        try {
+          await probe(url);
+          setStatus(el, true, "OK");
+          results.push(`OK  ${name}: ${url}`);
+        } catch (error) {
+          setStatus(el, false, "FAIL");
+          results.push(`ERR ${name}: ${error.message}`);
+        }
+      }
+
+      setStatus(checks.self, true, "OK");
+      results.unshift(`INFO path: ${location.href}`);
+      log.textContent = results.join("\n");
+    }
+
+    runChecks().catch((error) => {
+      log.textContent = `驗證失敗: ${error.message}`;
+      setStatus(checks.self, false, "FAIL");
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+{
+    "Type": "Live2D Expression",
+    "IsModelCustomizationExpression": false,
+    "Parameters": [
+        {
+            "Id": "FaceSwap",
+            "Value": 0.019999999552965165,
+            "Blend": "Add"
+        }
+    ]
+}

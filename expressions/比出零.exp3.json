@@ -1,0 +1,41 @@
+{
+    "Type": "Live2D Expression",
+    "IsModelCustomizationExpression": false,
+    "Parameters": [
+        {
+            "Id": "HandRightFinger_2_Index",
+            "Value": 1.0,
+            "Blend": "Add"
+        },
+        {
+            "Id": "HandRightPositionX",
+            "Value": -6.230161666870117,
+            "Blend": "Add"
+        },
+        {
+            "Id": "HandRightPositionY",
+            "Value": -5.0,
+            "Blend": "Add"
+        },
+        {
+            "Id": "HandRightAngleX",
+            "Value": 180.0,
+            "Blend": "Add"
+        },
+        {
+            "Id": "HandRightAngleY",
+            "Value": 360.0,
+            "Blend": "Add"
+        },
+        {
+            "Id": "Numbers",
+            "Value": 0.0,
+            "Blend": "Add"
+        },
+        {
+            "Id": "NumbersOut",
+            "Value": 2.0,
+            "Blend": "Add"
+        }
+    ]
+}

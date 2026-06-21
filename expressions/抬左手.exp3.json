@@ -1,0 +1,36 @@
+{
+    "Type": "Live2D Expression",
+    "IsModelCustomizationExpression": false,
+    "Parameters": [
+        {
+            "Id": "HandLeftFinger_2_Index",
+            "Value": 1.0,
+            "Blend": "Add"
+        },
+        {
+            "Id": "HandLeftFinger_3_Middle",
+            "Value": 0.903645396232605,
+            "Blend": "Add"
+        },
+        {
+            "Id": "HandLeftFinger_1_Thumb",
+            "Value": 1.0,
+            "Blend": "Add"
+        },
+        {
+            "Id": "HandLeftAngleX",
+            "Value": 0.0,
+            "Blend": "Add"
+        },
+        {
+            "Id": "HandLeftAngleY",
+            "Value": 205.73118591308595,
+            "Blend": "Add"
+        },
+        {
+            "Id": "ParamAngleZ",
+            "Value": -5.000000476837158,
+            "Blend": "Add"
+        }
+    ]
+}

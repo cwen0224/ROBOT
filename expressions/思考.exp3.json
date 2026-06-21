@@ -1,0 +1,81 @@
+{
+    "Type": "Live2D Expression",
+    "IsModelCustomizationExpression": false,
+    "Parameters": [
+        {
+            "Id": "HandLeftPositionX",
+            "Value": 1.785848617553711,
+            "Blend": "Add"
+        },
+        {
+            "Id": "HandLeftPositionY",
+            "Value": -2.3573312759399416,
+            "Blend": "Add"
+        },
+        {
+            "Id": "HandLeftAngleX",
+            "Value": -360.0,
+            "Blend": "Add"
+        },
+        {
+            "Id": "HandLeftAngleY",
+            "Value": 360.0,
+            "Blend": "Add"
+        },
+        {
+            "Id": "HandRightPositionX",
+            "Value": 5.0,
+            "Blend": "Add"
+        },
+        {
+            "Id": "HandRightPositionY",
+            "Value": 0.28574180603027346,
+            "Blend": "Add"
+        },
+        {
+            "Id": "HandRightAngleX",
+            "Value": 210.87448120117188,
+            "Blend": "Add"
+        },
+        {
+            "Id": "HandRightAngleY",
+            "Value": 0.0,
+            "Blend": "Add"
+        },
+        {
+            "Id": "ParamEyeLOpen",
+            "Value": -0.22501921653747559,
+            "Blend": "Add"
+        },
+        {
+            "Id": "ParamEyeROpen",
+            "Value": -0.6642579436302185,
+            "Blend": "Add"
+        },
+        {
+            "Id": "ParamAngleX",
+            "Value": 12.350000381469727,
+            "Blend": "Add"
+        },
+        {
+            "Id": "ParamAngleY",
+            "Value": 16.350000381469728,
+            "Blend": "Add"
+        },
+        {
+            "Id": "ParamAngleZ",
+            "Value": -7.948999881744385,
+            "Blend": "Add"
+        },
+        {
+            "Id": "ParamEyeBallX",
+            "Value": 1.0,
+            "Blend": "Add"
+        },
+        {
+            "Id": "ParamEyeBallY",
+            "Value": 1.0,
+            "Blend": "Add"
+        }
+    ]
+}

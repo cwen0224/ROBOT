@@ -1,0 +1,26 @@
+{
+    "Type": "Live2D Expression",
+    "IsModelCustomizationExpression": false,
+    "Parameters": [
+        {
+            "Id": "ParamEyeRSmile",
+            "Value": -2.0,
+            "Blend": "Add"
+        },
+        {
+            "Id": "ParamEyeLSmile",
+            "Value": -2.0,
+            "Blend": "Add"
+        },
+        {
+            "Id": "ParamEyeLOpen",
+            "Value": 0.7000000476837158,
+            "Blend": "Multiply"
+        },
+        {
+            "Id": "ParamEyeROpen",
+            "Value": 0.7000000476837158,
+            "Blend": "Multiply"
+        }
+    ]
+}

@@ -1,0 +1,71 @@
+{
+    "Type": "Live2D Expression",
+    "IsModelCustomizationExpression": false,
+    "Parameters": [
+        {
+            "Id": "HandLeftPositionX",
+            "Value": 4.389429569244385,
+            "Blend": "Add"
+        },
+        {
+            "Id": "HandLeftPositionY",
+            "Value": -3.539865493774414,
+            "Blend": "Add"
+        },
+        {
+            "Id": "HandLeftAngleX",
+            "Value": -282.26458740234377,
+            "Blend": "Add"
+        },
+        {
+            "Id": "HandLeftAngleY",
+            "Value": 225.56027221679688,
+            "Blend": "Add"
+        },
+        {
+            "Id": "HandRightPositionX",
+            "Value": -4.460230827331543,
+            "Blend": "Add"
+        },
+        {
+            "Id": "HandRightPositionY",
+            "Value": -3.7522640228271486,
+            "Blend": "Add"
+        },
+        {
+            "Id": "HandRightAngleX",
+            "Value": 275.259521484375,
+            "Blend": "Add"
+        },
+        {
+            "Id": "HandRightAngleY",
+            "Value": 244.67532348632813,
+            "Blend": "Add"
+        },
+        {
+            "Id": "FaceSwap",
+            "Value": 0.019999999552965165,
+            "Blend": "Add"
+        },
+        {
+            "Id": "FaceColor",
+            "Value": 1.0,
+            "Blend": "Add"
+        },
+        {
+            "Id": "MouthPartsSwap",
+            "Value": 0.03999999910593033,
+            "Blend": "Add"
+        },
+        {
+            "Id": "ParamEyeRSmile",
+            "Value": 1.249999761581421,
+            "Blend": "Add"
+        },
+        {
+            "Id": "ParamEyeLSmile",
+            "Value": 1.249999761581421,
+            "Blend": "Add"
+        }
+    ]
+}

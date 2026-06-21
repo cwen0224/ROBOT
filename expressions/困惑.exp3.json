@@ -1,0 +1,96 @@
+{
+    "Type": "Live2D Expression",
+    "IsModelCustomizationExpression": false,
+    "Parameters": [
+        {
+            "Id": "PalmFacingL",
+            "Value": 1.0,
+            "Blend": "Add"
+        },
+        {
+            "Id": "HandLeftFinger_2_Index",
+            "Value": 0.585679292678833,
+            "Blend": "Add"
+        },
+        {
+            "Id": "HandLeftFinger_3_Middle",
+            "Value": 0.18921925127506257,
+            "Blend": "Add"
+        },
+        {
+            "Id": "HandLeftFinger_1_Thumb",
+            "Value": 0.35351818799972536,
+            "Blend": "Add"
+        },
+        {
+            "Id": "HandLeftPositionX",
+            "Value": 5.056319236755371,
+            "Blend": "Add"
+        },
+        {
+            "Id": "HandLeftPositionY",
+            "Value": 3.8192105293273927,
+            "Blend": "Add"
+        },
+        {
+            "Id": "HandLeftAngleX",
+            "Value": -360.0,
+            "Blend": "Add"
+        },
+        {
+            "Id": "HandLeftAngleY",
+            "Value": 360.0,
+            "Blend": "Add"
+        },
+        {
+            "Id": "HandRightPositionX",
+            "Value": -0.9675693511962891,
+            "Blend": "Add"
+        },
+        {
+            "Id": "HandRightPositionY",
+            "Value": -0.726445198059082,
+            "Blend": "Add"
+        },
+        {
+            "Id": "HandRightAngleX",
+            "Value": 153.01258850097657,
+            "Blend": "Add"
+        },
+        {
+            "Id": "HandRightAngleY",
+            "Value": 65.57701873779297,
+            "Blend": "Add"
+        },
+        {
+            "Id": "FaceSwap",
+            "Value": 0.029999999329447748,
+            "Blend": "Add"
+        },
+        {
+            "Id": "MouthPartsSwap",
+            "Value": 0.009999999776482582,
+            "Blend": "Add"
+        },
+        {
+            "Id": "ParamAngleX",
+            "Value": 8.143501281738282,
+            "Blend": "Add"
+        },
+        {
+            "Id": "ParamAngleY",
+            "Value": -14.999329566955567,
+            "Blend": "Add"
+        },
+        {
+            "Id": "ParamAngleZ",
+            "Value": 7.473860740661621,
+            "Blend": "Add"
+        },
+        {
+            "Id": "ParamBodyAngleZ",
+            "Value": 1.8815207481384278,
+            "Blend": "Add"
+        }
+    ]
+}
